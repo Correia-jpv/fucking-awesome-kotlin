@@ -41,7 +41,7 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.3")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:1.6.1")
     implementation("com.charleskorn.kaml:kaml:0.55.0")
 
     implementation("org.flywaydb:flyway-core:10.0.0")
