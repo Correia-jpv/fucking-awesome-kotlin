@@ -46,7 +46,7 @@ dependencies {
 
     implementation("org.flywaydb:flyway-core:10.0.1")
     implementation("org.jooq:jooq:3.18.7")
-    implementation("org.postgresql:postgresql:42.6.0")
+    implementation("org.postgresql:postgresql:42.7.0")
     implementation("com.zaxxer:HikariCP:5.1.0")
 
     implementation("at.favre.lib:bcrypt:0.10.2")
