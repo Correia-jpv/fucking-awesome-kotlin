@@ -27,7 +27,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@types/node", "npm:20.12.7"],\
-          ["@types/react", "npm:18.2.78"],\
+          ["@types/react", "npm:18.2.79"],\
           ["@types/react-dom", "npm:18.2.25"],\
           ["autoprefixer", "virtual:026f71f91d5b94b20495b2f24e52cddc6d7e3023d7a70aadc346c81127f7c580d7560314395375f36a9c8d59fabdada8cbdf66c7dc6b1a4cc4ed5bb3274ae62c#npm:10.4.19"],\
           ["copy-to-clipboard", "npm:3.3.3"],\
@@ -570,10 +570,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["npm:18.2.78", {\
-        "packageLocation": "./.yarn/cache/@types-react-npm-18.2.78-5875a63d7c-a4bf8104c5.zip/node_modules/@types/react/",\
+      ["npm:18.2.79", {\
+        "packageLocation": "./.yarn/cache/@types-react-npm-18.2.79-89aa23fe00-2ef833e7d0.zip/node_modules/@types/react/",\
         "packageDependencies": [\
-          ["@types/react", "npm:18.2.78"],\
+          ["@types/react", "npm:18.2.79"],\
           ["@types/prop-types", "npm:15.7.4"],\
           ["csstype", "npm:3.0.9"]\
         ],\
@@ -1308,7 +1308,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["awesome-kotlin", "workspace:."],\
           ["@types/node", "npm:20.12.7"],\
-          ["@types/react", "npm:18.2.78"],\
+          ["@types/react", "npm:18.2.79"],\
           ["@types/react-dom", "npm:18.2.25"],\
           ["autoprefixer", "virtual:026f71f91d5b94b20495b2f24e52cddc6d7e3023d7a70aadc346c81127f7c580d7560314395375f36a9c8d59fabdada8cbdf66c7dc6b1a4cc4ed5bb3274ae62c#npm:10.4.19"],\
           ["copy-to-clipboard", "npm:3.3.3"],\
@@ -4833,7 +4833,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/react-dom-virtual-6d619bc396/0/cache/react-dom-npm-18.2.0-dd675bca1c-ca5e7762ec.zip/node_modules/react-dom/",\
         "packageDependencies": [\
           ["react-dom", "virtual:026f71f91d5b94b20495b2f24e52cddc6d7e3023d7a70aadc346c81127f7c580d7560314395375f36a9c8d59fabdada8cbdf66c7dc6b1a4cc4ed5bb3274ae62c#npm:18.2.0"],\
-          ["@types/react", "npm:18.2.78"],\
+          ["@types/react", "npm:18.2.79"],\
           ["loose-envify", "npm:1.4.0"],\
           ["react", "npm:18.2.0"],\
           ["scheduler", "npm:0.23.0"]\
@@ -4858,7 +4858,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["react-router", "virtual:026f71f91d5b94b20495b2f24e52cddc6d7e3023d7a70aadc346c81127f7c580d7560314395375f36a9c8d59fabdada8cbdf66c7dc6b1a4cc4ed5bb3274ae62c#npm:6.22.3"],\
           ["@remix-run/router", "npm:1.15.3"],\
-          ["@types/react", "npm:18.2.78"],\
+          ["@types/react", "npm:18.2.79"],\
           ["react", "npm:18.2.0"]\
         ],\
         "packagePeers": [\
@@ -4881,7 +4881,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["react-router-dom", "virtual:026f71f91d5b94b20495b2f24e52cddc6d7e3023d7a70aadc346c81127f7c580d7560314395375f36a9c8d59fabdada8cbdf66c7dc6b1a4cc4ed5bb3274ae62c#npm:6.22.3"],\
           ["@remix-run/router", "npm:1.15.3"],\
-          ["@types/react", "npm:18.2.78"],\
+          ["@types/react", "npm:18.2.79"],\
           ["@types/react-dom", "npm:18.2.25"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:026f71f91d5b94b20495b2f24e52cddc6d7e3023d7a70aadc346c81127f7c580d7560314395375f36a9c8d59fabdada8cbdf66c7dc6b1a4cc4ed5bb3274ae62c#npm:18.2.0"],\
