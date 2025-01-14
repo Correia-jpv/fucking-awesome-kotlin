@@ -765,7 +765,7 @@ __metadata:
     mini-css-extract-plugin: "npm:^2.9.2"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
-    sass: "npm:^1.83.1"
+    sass: "npm:^1.83.3"
     sass-loader: "npm:^16.0.4"
     style-loader: "npm:^4.0.0"
     ts-loader: "npm:^9.5.2"
@@ -3063,9 +3063,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.83.1":
-  version: 1.83.1
-  resolution: "sass@npm:1.83.1"
+"sass@npm:^1.83.3":
+  version: 1.83.3
+  resolution: "sass@npm:1.83.3"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     chokidar: "npm:^4.0.0"
@@ -3076,7 +3076,7 @@ __metadata:
       optional: true
   bin:
     sass: sass.js
-  checksum: 10/ee4ea5573faddeed375479eda6ac87a6f34dc6fc5391c6cc2743993f24827f4709f950fba6ef1ad0694215a1df40d43f4ed9006327daa3743c8e3ad1979d3c32
+  checksum: 10/30e952b89230cdef0b44a791262fca14b13f88f042b45a08ef329afb7bdfbdea3b37f2813788fe6072690a50a0ad202d43433efc337670689447f88b732e9fc1
   languageName: node
   linkType: hard
 
