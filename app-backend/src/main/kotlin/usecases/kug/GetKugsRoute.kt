@@ -1,14 +1,13 @@
 package usecases.kug
 
-import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import ktor.KtorRoute
+import infra.ktor.KtorRoute
 
 class GetKugsRoute(
     private val kugDao: KugDao,
 ) : KtorRoute {
-    override fun Routing.install() {
+    override fun Route.install() {
         get("/kugs") {
             call.respond(kugDao.getAll())
         }
