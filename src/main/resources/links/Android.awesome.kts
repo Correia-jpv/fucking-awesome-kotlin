@@ -322,11 +322,6 @@ category("Android") {
       setTags("service")
     }
     link {
-      github = "evilthreads669966/Pickpocket"
-      desc = "An asynchronous Android library for content providers and more."
-      setTags("content-providers")
-    }
-    link {
       github = "evilthreads669966/EasyShells"
       desc = "A simple shell for executing Linux commands with responses"
       setTags("system")

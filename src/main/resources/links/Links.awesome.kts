@@ -94,7 +94,7 @@ category("Links") {
     link {
       name = "Kotlin Kōans Android app"
       desc = "Learn Kotlin with short coding challenges on your Android device"
-      href = "https://play.google.com/store/apps/details?id=me.vickychijwani.kotlinkoans"
+      github = "vickychijwani/kotlin-koans-android"
     }
     link {
       name = "Kotlin Guide"
@@ -165,6 +165,7 @@ category("Links") {
       desc = "Blog about testing with Kotlin"
       href = "https://kotlintesting.com"
       setTags("resources", "testing")
+      archived("Site do not exists")
     }
   }
   subcategory("Courses") {
@@ -209,11 +210,6 @@ category("Links") {
       awesome()
     }
     link {
-      name = "Kotlin an Introduction - Caster.io"
-      desc = "Kotlin introductory course at Caster.io"
-      href = "https://caster.io/courses/introduction-to-kotlin/"
-    }
-    link {
       name = "Building Android Apps with Kotlin: Getting Started - Alex Dunn"
       desc = "Dive into the language set to replace Java while building Android applications. This course will give you a foundation of both Kotlin and Android skills to allow you to build apps faster and cleaner than ever before."
       href = "https://www.pluralsight.com/courses/building-android-apps-kotlin-getting-started"
@@ -238,11 +234,6 @@ category("Links") {
       desc = "Detailed Kotlin introductory course for Java developers"
       href = "https://www.coursera.org/learn/kotlin-for-java-developers"
       awesome()
-    }
-    link {
-      name = "Kotlin Online Courses at Classpert"
-      desc = "Over 80 Kotlin Online Courses - Classpert Online Course and MOOC Search"
-      href = "https://classpert.com/kotlin-programming"
     }
     link {
       name = "Test-Driven Development Tutorial for Android: Getting Started - By Victoria Gonda"

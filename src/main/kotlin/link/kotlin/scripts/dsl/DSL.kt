@@ -68,6 +68,12 @@ class LinkBuilder {
         this.awesome = true
     }
 
+    private var archived: Boolean = false
+    @LinkDSL
+    fun archived(reason: String? = null) {
+        this.archived = true
+    }
+
     private var platforms: List<PlatformType> = emptyList()
     @LinkDSL
     fun setPlatforms(vararg platforms: PlatformType) {
@@ -90,7 +96,8 @@ class LinkBuilder {
             bitbucket = bitbucket,
             github = github,
             kug = kug,
-            awesome = awesome
+            awesome = awesome,
+            archived = archived,
         )
     }
 }
