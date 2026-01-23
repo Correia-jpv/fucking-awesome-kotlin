@@ -7,7 +7,6 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.security.MessageDigest
 import kotlin.reflect.KClass
-import kotlin.time.Duration
 
 interface Cache {
     fun <T> put(key: String, value: T)
@@ -42,21 +41,6 @@ class FileCache(
                 null
             }
         } else null
-    }
-
-    fun cleanup(prefix: String, maxAge: Duration) {
-        if (!Files.exists(folder)) return
-
-        val cutoff = System.currentTimeMillis() - maxAge.inWholeMilliseconds
-        Files.list(folder).use { stream ->
-            stream
-                .filter { it.fileName.toString().startsWith(prefix) }
-                .filter { Files.getLastModifiedTime(it).toMillis() < cutoff }
-                .forEach { path ->
-                    LOGGER.info("Removing stale cache entry [$path].")
-                    Files.delete(path)
-                }
-        }
     }
 
     companion object {
