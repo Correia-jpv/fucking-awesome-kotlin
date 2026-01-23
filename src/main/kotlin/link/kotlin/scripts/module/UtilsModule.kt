@@ -13,6 +13,7 @@ import org.apache.http.impl.nio.client.HttpAsyncClients
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.concurrent.thread
+import kotlin.time.Duration.Companion.hours
 
 class UtilsModule(
     private val configurationModule: ConfigurationModule,
@@ -50,6 +51,8 @@ class UtilsModule(
             folder = folder,
             mapper = objectMapper.value
         )
+
+        fileCache.cleanup(prefix = "link-", maxAge = 12.hours)
 
         DisableCache(
             cache = fileCache,

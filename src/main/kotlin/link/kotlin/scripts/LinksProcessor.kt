@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import link.kotlin.scripts.model.ApplicationConfiguration
 import link.kotlin.scripts.model.Link
+import link.kotlin.scripts.utils.Cache
 import link.kotlin.scripts.utils.HttpClient
 import link.kotlin.scripts.utils.body
 import link.kotlin.scripts.utils.logger
@@ -14,9 +15,39 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.temporal.ChronoUnit
+import kotlin.time.Duration.Companion.hours
 
 interface LinksProcessor {
     suspend fun process(link: Link): Link
+}
+
+class CachingLinksProcessor(
+    private val cache: Cache,
+    private val delegate: LinksProcessor
+) : LinksProcessor {
+    override suspend fun process(link: Link): Link {
+        val cacheKey = link.cacheKey() ?: return delegate.process(link)
+        val cached = cache.get(cacheKey, Link::class)
+
+        return if (cached != null) {
+            LOGGER.debug("Cache hit for link: $cacheKey")
+            cached
+        } else {
+            val result = delegate.process(link)
+            cache.put(cacheKey, result)
+            result
+        }
+    }
+
+    private fun Link.cacheKey(): String? {
+        val identifier = github ?: bitbucket ?: return null
+        val window = System.currentTimeMillis() / TWELVE_HOURS_MS
+        return "link-$identifier-$window"
+    }
+
+    companion object {
+        private val TWELVE_HOURS_MS = 12.hours.inWholeMilliseconds
+    }
 }
 
 internal class DefaultLinksProcessor(

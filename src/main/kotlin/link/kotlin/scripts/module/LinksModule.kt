@@ -2,6 +2,7 @@ package link.kotlin.scripts.module
 
 import io.heapy.komok.tech.di.delegate.bean
 import link.kotlin.scripts.CachedGithubTrending
+import link.kotlin.scripts.CachingLinksProcessor
 import link.kotlin.scripts.CategoryProcessor
 import link.kotlin.scripts.CombinedLinksProcessors
 import link.kotlin.scripts.DefaultLinksChecker
@@ -33,11 +34,16 @@ class LinksModule(
             linksChecker = linksChecker.value
         )
 
+        val cachedLinksProcessor = CachingLinksProcessor(
+            cache = utilsModule.cache.value,
+            delegate = defaultLinksProcessor
+        )
+
         val markdownLinkProcessor = DescriptionMarkdownLinkProcessor(
             markdownRenderer = renderingModule.markdownRenderer.value
         )
 
-        CombinedLinksProcessors(listOf(defaultLinksProcessor, markdownLinkProcessor))
+        CombinedLinksProcessors(listOf(cachedLinksProcessor, markdownLinkProcessor))
     }
 
     val categoryProcessor by bean<CategoryProcessor> {
