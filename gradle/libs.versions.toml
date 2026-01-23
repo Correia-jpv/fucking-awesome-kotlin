@@ -1,6 +1,8 @@
 [versions]
 commonmark = "0.27.1"
+flyway = "11.20.2"
 jackson = "3.0.4"
+jooq = "3.20.10"
 jsoup = "1.22.1"
 junit = "6.0.2"
 komok = "1.0.13"
@@ -9,6 +11,7 @@ kotlinx-coroutines = "1.10.2"
 ktor = "3.4.0"
 logback = "1.5.25"
 mockk = "1.14.7"
+postgresql = "42.7.9"
 rome = "2.1.0"
 sitemapgen4j = "1.1.2"
 
@@ -16,8 +19,12 @@ sitemapgen4j = "1.1.2"
 commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" }
 commonmark-ext-gfm-tables = { module = "org.commonmark:commonmark-ext-gfm-tables", version.ref = "commonmark" }
 
+flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway" }
+
 jackson-module-kotlin = { module = "tools.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 jackson-dataformat-xml = { module = "tools.jackson.dataformat:jackson-dataformat-xml", version.ref = "jackson" }
+
+jooq-codegen = { module = "org.jooq:jooq-codegen", version.ref = "jooq" }
 
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 
@@ -48,6 +55,8 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 
 rome = { module = "com.rometools:rome", version.ref = "rome" }
 
