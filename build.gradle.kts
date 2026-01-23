@@ -27,19 +27,19 @@ dependencies {
 
     implementation(libs.logback)
 
-    implementation("com.rometools:rome:2.1.0")
-    implementation("com.github.dfabulich:sitemapgen4j:1.1.2")
-    implementation("org.jsoup:jsoup:1.22.1")
+    implementation(libs.rome)
+    implementation(libs.sitemapgen4j)
+    implementation(libs.jsoup)
 
-    implementation(kotlin("scripting-common"))
-    implementation(kotlin("scripting-jvm"))
-    implementation(kotlin("scripting-jvm-host"))
+    implementation(libs.kotlin.scripting.common)
+    implementation(libs.kotlin.scripting.jvm)
+    implementation(libs.kotlin.scripting.jvm.host)
 
-    implementation("org.commonmark:commonmark:0.27.1")
-    implementation("org.commonmark:commonmark-ext-gfm-tables:0.27.1")
+    implementation(libs.commonmark)
+    implementation(libs.commonmark.ext.gfm.tables)
 
-    implementation("io.ktor:ktor-client-apache:3.3.3")
-    implementation("io.ktor:ktor-client-jackson:3.3.3")
+    implementation(libs.ktor.client.apache)
+    implementation(libs.ktor.client.jackson)
 
     testImplementation(libs.mockk)
     testImplementation(libs.junit.jupiter)
