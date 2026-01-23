@@ -1,5 +1,6 @@
 [versions]
 jackson = "3.0.3"
+komok = "1.0.13"
 junit = "6.0.2"
 kotlin = "2.3.0"
 kotlinx-coroutines = "1.10.2"
@@ -19,6 +20,8 @@ kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref =
 
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+
+komok-tech-to-be-injected = { module = "io.heapy.komok:komok-tech-to-be-injected", version.ref = "komok" }
 
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation-jvm", version.ref = "ktor" }
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }

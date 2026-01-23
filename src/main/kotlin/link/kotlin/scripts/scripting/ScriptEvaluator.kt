@@ -10,11 +10,9 @@ import kotlin.script.experimental.jvmhost.BasicJvmScriptingHost
 
 interface ScriptEvaluator {
     fun <T : Any> eval(source: String, name: String, type: KClass<T>): T
-
-    companion object
 }
 
-private class ScriptingScriptEvaluator(
+internal class ScriptingScriptEvaluator(
     private val scriptingHost: BasicJvmScriptingHost
 ) : ScriptEvaluator {
     override fun <T : Any> eval(source: String, name: String, type: KClass<T>): T {
@@ -24,7 +22,7 @@ private class ScriptingScriptEvaluator(
     }
 }
 
-private class CachingScriptEvaluator(
+internal class CachingScriptEvaluator(
     private val cache: Cache,
     private val scriptEvaluator: ScriptEvaluator
 ) : ScriptEvaluator {
@@ -40,18 +38,4 @@ private class CachingScriptEvaluator(
             cacheValue
         }
     }
-}
-
-fun ScriptEvaluator.Companion.default(
-    scriptingHost: BasicJvmScriptingHost = BasicJvmScriptingHost(),
-    cache: Cache
-): ScriptEvaluator {
-    val scriptingScriptEvaluator = ScriptingScriptEvaluator(
-        scriptingHost = scriptingHost
-    )
-
-    return CachingScriptEvaluator(
-        cache = cache,
-        scriptEvaluator = scriptingScriptEvaluator
-    )
 }

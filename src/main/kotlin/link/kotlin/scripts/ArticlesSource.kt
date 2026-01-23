@@ -4,15 +4,12 @@ import link.kotlin.scripts.dsl.Article
 import link.kotlin.scripts.scripting.ScriptEvaluator
 import java.nio.file.Files
 import java.nio.file.Paths
-import kotlin.streams.toList
 
 interface ArticlesSource {
     fun getArticles(): List<Article>
-
-    companion object
 }
 
-private class FileSystemArticlesSource(
+internal class FileSystemArticlesSource(
     private val scriptEvaluator: ScriptEvaluator,
     private val articlesProcessor: ArticlesProcessor
 ) : ArticlesSource {
@@ -29,12 +26,3 @@ private class FileSystemArticlesSource(
     }
 }
 
-fun ArticlesSource.Companion.default(
-    scriptEvaluator: ScriptEvaluator,
-    articlesProcessor: ArticlesProcessor
-): ArticlesSource {
-    return FileSystemArticlesSource(
-        scriptEvaluator = scriptEvaluator,
-        articlesProcessor = articlesProcessor
-    )
-}

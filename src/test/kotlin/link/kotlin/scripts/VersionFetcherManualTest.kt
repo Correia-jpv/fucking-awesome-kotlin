@@ -1,11 +1,13 @@
 package link.kotlin.scripts
 
-import link.kotlin.scripts.utils.HttpClient
-import link.kotlin.scripts.utils.default
+import io.heapy.komok.tech.di.delegate.buildModule
+import link.kotlin.scripts.module.UtilsModule
 
 suspend fun main() {
-    val client = HttpClient.default()
-    val fetcher = KotlinVersionFetcher.default(client)
-    val versions = fetcher.getLatestVersions(listOf("1.8", "1.9"))
+    val utilsModule = buildModule<UtilsModule>()
+    val client = utilsModule.httpClient.value
+
+    val fetcher = MavenCentralKotlinVersionFetcher(client)
+    val versions = fetcher.getLatestVersions(listOf("2.2", "2.3"))
     println(versions)
 }

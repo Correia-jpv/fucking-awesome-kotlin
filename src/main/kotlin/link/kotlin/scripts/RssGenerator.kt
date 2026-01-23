@@ -11,15 +11,13 @@ import link.kotlin.scripts.dsl.Article
 import java.io.StringWriter
 import java.time.Instant
 import java.time.ZoneOffset
-import java.util.Date
+import java.util.*
 
 interface RssGenerator {
     fun generate(articles: List<Article>, name: String): String
-
-    companion object
 }
 
-private class DefaultRssGenerator : RssGenerator {
+internal class DefaultRssGenerator : RssGenerator {
     override fun generate(articles: List<Article>, name: String): String {
         val feed = SyndFeedImpl().apply {
             title = "Kotlin Programming Language"
@@ -65,8 +63,3 @@ private fun toSyndEntry(article: Article): SyndEntry {
         }
     }
 }
-
-fun RssGenerator.Companion.default(): RssGenerator {
-    return DefaultRssGenerator()
-}
-

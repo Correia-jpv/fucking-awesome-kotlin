@@ -20,6 +20,7 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlinx.coroutines)
+    implementation(libs.komok.tech.to.be.injected)
 
     implementation(libs.jackson.module.kotlin)
     implementation(libs.jackson.dataformat.xml)

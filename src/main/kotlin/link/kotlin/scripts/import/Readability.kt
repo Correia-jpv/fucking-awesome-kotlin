@@ -1,14 +1,15 @@
 package link.kotlin.scripts.import
 
-import tools.jackson.module.kotlin.jacksonObjectMapper
-import tools.jackson.module.kotlin.readValue
+import io.heapy.komok.tech.di.delegate.buildModule
 import kotlinx.coroutines.runBlocking
+import link.kotlin.scripts.module.UtilsModule
 import link.kotlin.scripts.utils.HttpClient
 import link.kotlin.scripts.utils.body
-import link.kotlin.scripts.utils.default
 import link.kotlin.scripts.utils.parseInstant
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.client.utils.URIBuilder
+import tools.jackson.module.kotlin.jacksonObjectMapper
+import tools.jackson.module.kotlin.readValue
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardOpenOption
@@ -29,9 +30,11 @@ class Readability(
 
 fun main() = runBlocking {
     val mapper = jacksonObjectMapper()
-    val readability = Readability(
-        HttpClient.default()
-    )
+
+    val utilsModule = buildModule<UtilsModule>()
+    val httpClient = utilsModule.httpClient.value
+
+    val readability = Readability(httpClient)
 
     val response = readability.getArticle("https://blog.jetbrains.com/kotlin/2017/03/kotlin-1-1-1-is-out/")
     val res = mapper.readValue<ReadabilityResponse>(response)

@@ -6,11 +6,9 @@ import org.apache.http.client.methods.HttpHead
 
 interface LinksChecker {
     suspend fun check(url: String)
-
-    companion object
 }
 
-private class DefaultLinksChecker(
+internal class DefaultLinksChecker(
     private val httpClient: HttpClient
 ) : LinksChecker {
     override suspend fun check(url: String) {
@@ -28,12 +26,4 @@ private class DefaultLinksChecker(
     companion object {
         private val LOGGER = logger<DefaultLinksChecker>()
     }
-}
-
-fun LinksChecker.Companion.default(
-    httpClient: HttpClient
-): LinksChecker{
-    return DefaultLinksChecker(
-        httpClient = httpClient
-    )
 }

@@ -2,14 +2,14 @@ package link.kotlin.scripts
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
-import tools.jackson.databind.ObjectMapper
-import tools.jackson.module.kotlin.readValue
 import link.kotlin.scripts.model.ApplicationConfiguration
 import link.kotlin.scripts.model.Link
 import link.kotlin.scripts.utils.HttpClient
 import link.kotlin.scripts.utils.body
 import link.kotlin.scripts.utils.logger
 import org.apache.http.client.methods.HttpGet
+import tools.jackson.databind.ObjectMapper
+import tools.jackson.module.kotlin.readValue
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -17,11 +17,9 @@ import java.time.temporal.ChronoUnit
 
 interface LinksProcessor {
     suspend fun process(link: Link): Link
-
-    companion object
 }
 
-private class DefaultLinksProcessor(
+internal class DefaultLinksProcessor(
     private val configuration: ApplicationConfiguration,
     private val mapper: ObjectMapper,
     private val httpClient: HttpClient,
@@ -179,27 +177,6 @@ class CombinedLinksProcessors(
 }
 
 private val LOGGER = logger<DefaultLinksProcessor>()
-
-fun LinksProcessor.Companion.default(
-    configuration: ApplicationConfiguration,
-    mapper: ObjectMapper,
-    httpClient: HttpClient,
-    linksChecker: LinksChecker,
-    markdownRenderer: MarkdownRenderer
-): LinksProcessor {
-    val defaultLinksProcessor = DefaultLinksProcessor(
-        configuration = configuration,
-        mapper = mapper,
-        httpClient = httpClient,
-        linksChecker = linksChecker
-    )
-
-    val markdownLinkProcessor = DescriptionMarkdownLinkProcessor(
-        markdownRenderer = markdownRenderer
-    )
-
-    return CombinedLinksProcessors(listOf(defaultLinksProcessor, markdownLinkProcessor))
-}
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class BitbucketResponse(

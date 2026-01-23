@@ -16,11 +16,9 @@ private val trending = listOf(
 
 interface GithubTrending {
     suspend fun fetch(): Category?
-
-    companion object
 }
 
-private class CachedGithubTrending(
+internal class CachedGithubTrending(
     private val cache: Cache,
     private val githubTrending: GithubTrending
 ) : GithubTrending {
@@ -37,7 +35,7 @@ private class CachedGithubTrending(
     }
 }
 
-private class JSoupGithubTrending(
+internal class JSoupGithubTrending(
 ) : GithubTrending {
     override suspend fun fetch(): Category? {
         val subcategories = trending.mapNotNull { it.toSubcategory() }
@@ -85,17 +83,3 @@ private class JSoupGithubTrending(
     }
 }
 
-suspend fun main() {
-    println(JSoupGithubTrending().fetch())
-}
-
-fun GithubTrending.Companion.default(
-    cache: Cache
-): GithubTrending {
-    val jSoupGithubTrending = JSoupGithubTrending()
-
-    return CachedGithubTrending(
-        cache = cache,
-        githubTrending = jSoupGithubTrending
-    )
-}

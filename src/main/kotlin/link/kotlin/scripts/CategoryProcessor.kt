@@ -7,11 +7,9 @@ import link.kotlin.scripts.dsl.Category
 
 interface CategoryProcessor {
     suspend fun process(category: Category): Category
-
-    companion object
 }
 
-private class ParallelCategoryProcessor(
+internal class ParallelCategoryProcessor(
     private val linksProcessor: LinksProcessor
 ) : CategoryProcessor {
     override suspend fun process(category: Category): Category = coroutineScope {
@@ -27,12 +25,4 @@ private class ParallelCategoryProcessor(
 
         result
     }
-}
-
-fun CategoryProcessor.Companion.default(
-    linksProcessor: LinksProcessor
-): CategoryProcessor {
-    return ParallelCategoryProcessor(
-        linksProcessor = linksProcessor
-    )
 }

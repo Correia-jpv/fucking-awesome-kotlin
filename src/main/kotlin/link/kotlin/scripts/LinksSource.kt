@@ -3,13 +3,11 @@ package link.kotlin.scripts
 import kotlinx.coroutines.runBlocking
 import link.kotlin.scripts.dsl.Category
 import link.kotlin.scripts.scripting.ScriptEvaluator
-import java.nio.file.Paths
 import java.nio.file.Files
+import java.nio.file.Paths
 
 interface LinksSource {
     fun getLinks(): List<Category>
-
-    companion object
 }
 
 private val files = listOf(
@@ -23,7 +21,7 @@ private val files = listOf(
     "UserGroups.awesome.kts",
 )
 
-private class FileSystemLinksSource(
+internal class FileSystemLinksSource(
     private val scriptEvaluator: ScriptEvaluator,
     private val githubTrending: GithubTrending,
     private val categoryProcessor: CategoryProcessor
@@ -39,16 +37,4 @@ private class FileSystemLinksSource(
         (trendingCategory + scriptCategories)
             .map { category -> categoryProcessor.process(category) }
     }
-}
-
-fun LinksSource.Companion.default(
-    scriptEvaluator: ScriptEvaluator,
-    githubTrending: GithubTrending,
-    categoryProcessor: CategoryProcessor
-): LinksSource {
-    return FileSystemLinksSource(
-        scriptEvaluator = scriptEvaluator,
-        githubTrending = githubTrending,
-        categoryProcessor = categoryProcessor
-    )
 }

@@ -2,12 +2,15 @@
 
 package link.kotlin.scripts
 
+import io.heapy.komok.tech.di.delegate.buildModule
+import link.kotlin.scripts.module.ApplicationModule
 import link.kotlin.scripts.utils.logger
 import kotlin.system.exitProcess
 
 fun main() {
     try {
-        val generator = AwesomeKotlinGenerator.default()
+        val app = buildModule<ApplicationModule>()
+        val generator = app.awesomeKotlinGenerator.value
 
         // Load data
         val articles = generator.getArticles()

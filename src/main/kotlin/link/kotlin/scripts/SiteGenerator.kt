@@ -1,13 +1,12 @@
 package link.kotlin.scripts
 
-import tools.jackson.databind.ObjectMapper
 import kotlinx.coroutines.runBlocking
 import link.kotlin.scripts.dsl.Article
 import link.kotlin.scripts.dsl.Category
 import link.kotlin.scripts.model.toDto
-import link.kotlin.scripts.utils.callLogger
 import link.kotlin.scripts.utils.copyResources
 import link.kotlin.scripts.utils.writeFile
+import tools.jackson.databind.ObjectMapper
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -19,11 +18,9 @@ interface SiteGenerator {
     fun generateSitemap(articles: List<Article>)
     fun generateFeeds(articles: List<Article>)
     fun generateArticles(articles: List<Article>)
-
-    companion object
 }
 
-private class DefaultSiteGenerator(
+internal class DefaultSiteGenerator(
     private val mapper: ObjectMapper,
     private val kotlinVersionFetcher: KotlinVersionFetcher,
     private val sitemapGenerator: SitemapGenerator,
@@ -74,22 +71,4 @@ private class DefaultSiteGenerator(
     override fun generateArticles(articles: List<Article>) {
         pagesGenerator.generate(articles, dist)
     }
-}
-
-fun SiteGenerator.Companion.default(
-    mapper: ObjectMapper,
-    kotlinVersionFetcher: KotlinVersionFetcher,
-    sitemapGenerator: SitemapGenerator,
-    pagesGenerator: PagesGenerator,
-    rssGenerator: RssGenerator
-): SiteGenerator {
-    val instance = DefaultSiteGenerator(
-        mapper = mapper,
-        kotlinVersionFetcher = kotlinVersionFetcher,
-        sitemapGenerator = sitemapGenerator,
-        pagesGenerator = pagesGenerator,
-        rssGenerator = rssGenerator
-    )
-
-    return callLogger<SiteGenerator>(instance)
 }

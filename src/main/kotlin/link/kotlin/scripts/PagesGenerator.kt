@@ -4,8 +4,8 @@ import link.kotlin.scripts.dsl.Article
 import link.kotlin.scripts.dsl.ArticleFeature
 import link.kotlin.scripts.dsl.ArticleFeature.highlightjs
 import link.kotlin.scripts.dsl.ArticleFeature.mathjax
-import link.kotlin.scripts.dsl.LinkType.article
 import link.kotlin.scripts.dsl.LanguageCodes.EN
+import link.kotlin.scripts.dsl.LinkType.article
 import link.kotlin.scripts.utils.writeFile
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -13,11 +13,9 @@ import java.time.format.FormatStyle
 
 interface PagesGenerator {
     fun generate(articles: List<Article>, dist: String)
-
-    companion object
 }
 
-private class DefaultPagesGenerator : PagesGenerator {
+internal class DefaultPagesGenerator : PagesGenerator {
     override fun generate(articles: List<Article>, dist: String) {
         val articleBody = articles
             .groupBy { formatDate(it.date) }
@@ -131,8 +129,4 @@ fun getFeatures(features: List<ArticleFeature>): String {
                 """
         }
     }
-}
-
-fun PagesGenerator.Companion.default(): PagesGenerator {
-    return DefaultPagesGenerator()
 }
