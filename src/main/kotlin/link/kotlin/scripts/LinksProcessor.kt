@@ -2,8 +2,8 @@ package link.kotlin.scripts
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import tools.jackson.databind.ObjectMapper
+import tools.jackson.module.kotlin.readValue
 import link.kotlin.scripts.model.ApplicationConfiguration
 import link.kotlin.scripts.model.Link
 import link.kotlin.scripts.utils.HttpClient
@@ -208,9 +208,9 @@ data class BitbucketResponse(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GithubRepoResponse(
-    @JsonProperty("stargazers_count")
+    @param:JsonProperty("stargazers_count")
     val stargazersCount: Int,
-    @JsonProperty("pushed_at")
+    @param:JsonProperty("pushed_at")
     val pushedAt: Instant,
     val description: String?,
     val archived: Boolean

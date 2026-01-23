@@ -28,8 +28,7 @@ internal object LinkScriptCompilationConfiguration : ScriptCompilationConfigurat
     jvm {
         dependenciesFromClassContext(
             AwesomeScript::class,
-            "awesome-kotlin",
-            "kotlin-stdlib"
+            wholeClasspath = true
         )
         compilerOptions("-Xskip-prerelease-check", "-Xallow-unstable-dependencies")
     }

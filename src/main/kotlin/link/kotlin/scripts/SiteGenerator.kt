@@ -1,6 +1,6 @@
 package link.kotlin.scripts
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import tools.jackson.databind.ObjectMapper
 import kotlinx.coroutines.runBlocking
 import link.kotlin.scripts.dsl.Article
 import link.kotlin.scripts.dsl.Category

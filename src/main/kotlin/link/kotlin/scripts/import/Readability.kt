@@ -1,7 +1,7 @@
 package link.kotlin.scripts.import
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import tools.jackson.module.kotlin.jacksonObjectMapper
+import tools.jackson.module.kotlin.readValue
 import kotlinx.coroutines.runBlocking
 import link.kotlin.scripts.utils.HttpClient
 import link.kotlin.scripts.utils.body

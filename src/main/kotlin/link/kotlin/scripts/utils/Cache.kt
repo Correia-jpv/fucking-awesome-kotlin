@@ -1,6 +1,6 @@
 package link.kotlin.scripts.utils
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import tools.jackson.databind.ObjectMapper
 import link.kotlin.scripts.model.ApplicationConfiguration
 import java.math.BigInteger
 import java.nio.file.Files
