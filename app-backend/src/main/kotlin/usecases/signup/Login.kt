@@ -2,8 +2,9 @@ package usecases.signup
 
 import JooqModule
 import at.favre.lib.crypto.bcrypt.BCrypt
-import di.bean
-import io.ktor.http.*
+import io.heapy.komok.tech.di.delegate.bean
+import io.ktor.http.Cookie
+import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Routing
@@ -13,25 +14,25 @@ import ktor.KtorRoute
 import ktor.plugins.AuthenticationException
 import kotlin.time.Duration.Companion.days
 
-open class LoginModule(
+class LoginModule(
     private val jooqModule: JooqModule,
     private val jwtModule: JwtModule,
 ) {
-    open val bcryptVerifier by bean<BCrypt.Verifyer> {
+    val bcryptVerifier by bean<BCrypt.Verifyer> {
         BCrypt.verifyer()
     }
 
-    open val kotlinerDao by bean {
+    val kotlinerDao by bean {
         DefaultKotlinerDao(
-            dslContext = jooqModule.dslContext.get,
+            dslContext = jooqModule.dslContext.value,
         )
     }
 
-    open val route by bean {
+    val route by bean {
         LoginRoute(
-            generateJwt = jwtModule.generateJwt.get,
-            bcryptVerifier = bcryptVerifier.get,
-            kotlinerDao = kotlinerDao.get,
+            generateJwt = jwtModule.generateJwt.value,
+            bcryptVerifier = bcryptVerifier.value,
+            kotlinerDao = kotlinerDao.value,
         )
     }
 }

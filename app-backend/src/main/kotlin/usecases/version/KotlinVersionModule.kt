@@ -2,16 +2,16 @@ package usecases.version
 
 import HttpClientModule
 import XmlModule
-import di.bean
+import io.heapy.komok.tech.di.delegate.bean
 
-open class KotlinVersionModule(
+class KotlinVersionModule(
     private val xmlModule: XmlModule,
     private val httpClientModule: HttpClientModule,
 ) {
-    open val versionFetcher by bean<KotlinVersionFetcher> {
+    val versionFetcher by bean<KotlinVersionFetcher> {
         MavenCentralKotlinVersionFetcher(
-            xmlMapper = xmlModule.xmlMapper.get,
-            httpClient = httpClientModule.httpClient.get,
+            xmlMapper = xmlModule.xmlMapper.value,
+            httpClient = httpClientModule.httpClient.value,
         )
     }
 }

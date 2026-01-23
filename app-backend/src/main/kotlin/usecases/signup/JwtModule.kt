@@ -3,23 +3,22 @@ package usecases.signup
 import ConfigModule
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
-import di.Bean1
-import di.bean
+import io.heapy.komok.tech.di.delegate.bean
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.hocon.Hocon
 import kotlinx.serialization.hocon.decodeFromConfig
 import java.util.*
 
-open class JwtModule(
+class JwtModule(
     private val configModule: ConfigModule,
 ) {
-    open val jwtConfig by bean<JwtConfig> {
-        Hocon.decodeFromConfig(configModule.config.get.getConfig("jwt"))
+    val jwtConfig by bean<JwtConfig> {
+        Hocon.decodeFromConfig(configModule.config.value.getConfig("jwt"))
     }
 
-    open val generateJwt by bean {
+    val generateJwt by bean {
         GenerateJwt(
-            jwtConfig = jwtConfig.get,
+            jwtConfig = jwtConfig.value,
         )
     }
 
@@ -34,8 +33,8 @@ open class JwtModule(
 
 class GenerateJwt(
     private val jwtConfig: JwtModule.JwtConfig,
-) : Bean1<String, String> {
-    override fun invoke(id: String): String {
+) {
+    operator fun invoke(id: String): String {
         return JWT.create()
             .withAudience(jwtConfig.audience)
             .withIssuer(jwtConfig.issuer)

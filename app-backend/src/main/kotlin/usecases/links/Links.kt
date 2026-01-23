@@ -1,6 +1,6 @@
 package usecases.links
 
-import di.bean
+import io.heapy.komok.tech.di.delegate.bean
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Routing
 import io.ktor.server.routing.get
@@ -8,14 +8,14 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import ktor.KtorRoute
 
-open class LinksModule {
-    open val linkSource by bean {
+class LinksModule {
+    val linkSource by bean {
         LinkSource().get()
     }
 
-    open val route by bean {
+    val route by bean {
         LinksRoute(
-            links = linkSource.get,
+            links = linkSource.value,
         )
     }
 }

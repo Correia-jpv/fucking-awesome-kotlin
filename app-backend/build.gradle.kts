@@ -30,6 +30,7 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlinx.coroutines)
+    implementation(libs.komok.tech.to.be.injected)
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:1.7.3")
     implementation("com.charleskorn.kaml:kaml:0.67.0")

@@ -1,9 +1,9 @@
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.kotlinModule
-import di.bean
+import io.heapy.komok.tech.di.delegate.bean
 
-open class XmlModule {
-    open val xmlMapper by bean {
+class XmlModule {
+    val xmlMapper by bean {
         XmlMapper().apply {
             registerModule(kotlinModule { })
         }

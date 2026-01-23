@@ -1,8 +1,8 @@
 import com.charleskorn.kaml.Yaml
-import di.bean
+import io.heapy.komok.tech.di.delegate.bean
 
-open class YamlModule {
-    open val yaml by bean {
+class YamlModule {
+    val yaml by bean {
         Yaml.default
     }
 }

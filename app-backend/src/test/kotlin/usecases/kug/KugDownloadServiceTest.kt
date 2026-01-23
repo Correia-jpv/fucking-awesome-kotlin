@@ -1,24 +1,31 @@
 package usecases.kug
 
-import ApplicationFactory
+import HttpClientModule
+import YamlModule
+import io.heapy.komok.tech.di.delegate.buildModule
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.AssertionFailureBuilder.assertionFailure
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import utils.close
 
 class KugDownloadServiceTest {
-    private val application = ApplicationFactory()
+    private val httpClientModule = buildModule<HttpClientModule>()
+    private val yamlModule = buildModule<YamlModule>()
+
+    private val kugDownloadService = KugDownloadService(
+        yaml = yamlModule.yaml.value,
+        httpClient = httpClientModule.httpClient.value,
+    )
 
     @AfterEach
     fun close() {
-        application.close {}
+        httpClientModule.close()
     }
 
     @Test
     fun `test getting yaml file with user groups`() = runTest {
-        val yaml = application.kugModule.kugDownloadService.get.download()
+        val yaml = kugDownloadService.download()
 
         if (!yaml.contains("https://bkug.by/")) {
             assertionFailure()
@@ -31,7 +38,7 @@ class KugDownloadServiceTest {
 
     @Test
     fun `test parsing yaml file with user groups`() = runTest {
-        val sections = application.kugModule.kugDownloadService.get.pull()
+        val sections = kugDownloadService.pull()
         val bkug = sections.find { it.section == "Europe" }
             ?.groups
             ?.find { it.url == "https://bkug.by/" }

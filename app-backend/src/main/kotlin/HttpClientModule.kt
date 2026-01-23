@@ -1,13 +1,13 @@
-import di.bean
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.serialization.kotlinx.json.*
+import io.heapy.komok.tech.di.delegate.bean
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import utils.close
 
-open class HttpClientModule : AutoCloseable {
-    open val httpClient by bean {
+class HttpClientModule : AutoCloseable {
+    val httpClient by bean {
         HttpClient(CIO) {
             install(ContentNegotiation) {
                 json(json = Json {
@@ -18,6 +18,6 @@ open class HttpClientModule : AutoCloseable {
     }
 
     override fun close() {
-        if (httpClient.isInitialized) httpClient.get.close {}
+        if (httpClient.isInitialized) httpClient.value.close {}
     }
 }

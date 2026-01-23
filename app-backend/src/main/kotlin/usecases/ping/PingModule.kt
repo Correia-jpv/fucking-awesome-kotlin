@@ -1,9 +1,9 @@
 package usecases.ping
 
-import di.bean
+import io.heapy.komok.tech.di.delegate.bean
 
-open class PingModule {
-    open val route by bean {
+class PingModule {
+    val route by bean {
         PingRoute()
     }
 }

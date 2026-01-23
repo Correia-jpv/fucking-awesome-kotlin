@@ -1,11 +1,12 @@
-import di.bean
-import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.auth.jwt.*
-import io.ktor.server.cio.*
-import io.ktor.server.engine.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
+import io.heapy.komok.tech.di.delegate.bean
+import io.ktor.server.auth.authenticate
+import io.ktor.server.auth.jwt.JWTPrincipal
+import io.ktor.server.auth.principal
+import io.ktor.server.cio.CIO
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.response.respond
+import io.ktor.server.routing.get
+import io.ktor.server.routing.routing
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.hocon.Hocon
 import kotlinx.serialization.hocon.decodeFromConfig
@@ -22,7 +23,7 @@ import usecases.signup.RegisterModule
 import utils.withEach
 import kotlin.time.Duration
 
-open class ServerModule(
+class ServerModule(
     private val githubModule: GithubModule,
     private val pingModule: PingModule,
     private val loginModule: LoginModule,
@@ -34,29 +35,29 @@ open class ServerModule(
     private val lifecycleModule: LifecycleModule,
     private val configModule: ConfigModule,
 ) {
-    open val unauthenticatedRoutes by bean {
+    val unauthenticatedRoutes by bean {
         listOf(
-            githubModule.githubRedirectRoute.get,
-            githubModule.githubCallbackRoute.get,
+            githubModule.githubRedirectRoute.value,
+            githubModule.githubCallbackRoute.value,
 
-            pingModule.route.get,
+            pingModule.route.value,
 
-            loginModule.route.get,
-            registerModule.route.get,
+            loginModule.route.value,
+            registerModule.route.value,
 
-            linksModule.route.get,
-            kugModule.getKugRoute.get,
-            kugModule.updateKugsRoute.get,
+            linksModule.route.value,
+            kugModule.getKugRoute.value,
+            kugModule.updateKugsRoute.value,
         )
     }
 
-    open val ktorServer by bean {
+    val ktorServer by bean {
         System.setProperty("io.ktor.server.engine.ShutdownHook", "false")
 
-        val unauthenticatedRoutes = unauthenticatedRoutes.get
-        val jwtConfig = jwtModule.jwtConfig.get
-        val serverConfig = serverConfig.get
-        val meterRegistry = metricsModule.meterRegistry.get
+        val unauthenticatedRoutes = unauthenticatedRoutes.value
+        val jwtConfig = jwtModule.jwtConfig.value
+        val serverConfig = serverConfig.value
+        val meterRegistry = metricsModule.meterRegistry.value
 
         embeddedServer(
             factory = CIO,
@@ -82,7 +83,7 @@ open class ServerModule(
             configureSockets()
             configureMonitoring(meterRegistry)
         }.also { server ->
-            lifecycleModule.shutdownHandler.get.addHandler {
+            lifecycleModule.shutdownHandler.value.addHandler {
                 server.stop(
                     gracePeriodMillis = serverConfig.gracefulShutdownTimeout.inWholeMilliseconds,
                     timeoutMillis = 5000,
@@ -91,8 +92,8 @@ open class ServerModule(
         }
     }
 
-    open val serverConfig by bean<ServerConfig> {
-        Hocon.decodeFromConfig(configModule.config.get.getConfig("server"))
+    val serverConfig by bean<ServerConfig> {
+        Hocon.decodeFromConfig(configModule.config.value.getConfig("server"))
     }
 
     @Serializable
