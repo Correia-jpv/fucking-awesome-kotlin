@@ -32,8 +32,8 @@ category("Links") {
       href = "https://youtrack.jetbrains.com/issues/KT"
     }
     link {
-      name = "Twitter"
-      href = "https://twitter.com/kotlin"
+      name = "X.com (Twitter)"
+      href = "https://x.com/kotlin"
     }
     link {
       github = "Kotlin/KEEP"
