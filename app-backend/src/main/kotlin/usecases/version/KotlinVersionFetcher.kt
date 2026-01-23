@@ -1,7 +1,7 @@
 package usecases.version
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import tools.jackson.dataformat.xml.XmlMapper
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
