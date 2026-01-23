@@ -1,8 +1,10 @@
 # docker-compose -f docker-compose.dev.yml up -d
+
+name: "awesome-kotlin"
+
 services:
-  awesome_kotlin_database:
-    image: postgres:16.2
-    container_name: awesome_kotlin_database
+  database:
+    image: postgres:17.2
     restart: always
     mem_limit: 128m
     memswap_limit: 0m
