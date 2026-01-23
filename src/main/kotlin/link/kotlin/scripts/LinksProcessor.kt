@@ -7,6 +7,7 @@ import link.kotlin.scripts.model.Link
 import link.kotlin.scripts.utils.Cache
 import link.kotlin.scripts.utils.HttpClient
 import link.kotlin.scripts.utils.body
+import link.kotlin.scripts.utils.cacheKey
 import link.kotlin.scripts.utils.logger
 import org.apache.http.client.methods.HttpGet
 import tools.jackson.databind.ObjectMapper
@@ -42,7 +43,7 @@ class CachingLinksProcessor(
     private fun Link.cacheKey(): String? {
         val identifier = github ?: bitbucket ?: return null
         val window = System.currentTimeMillis() / TWELVE_HOURS_MS
-        return "link-$identifier-$window"
+        return "link-${Cache.cacheKey("$identifier-$window")}"
     }
 
     companion object {
