@@ -9,6 +9,7 @@ import link.kotlin.scripts.FileSystemArticlesSource
 class ArticlesModule(
     private val scriptingModule: ScriptingModule,
     private val renderingModule: RenderingModule,
+    private val utilsModule: UtilsModule,
 ) {
     val articlesProcessor by bean<ArticlesProcessor> {
         DefaultArticlesProcessor(markdownRenderer = renderingModule.markdownRenderer.value)
@@ -17,7 +18,8 @@ class ArticlesModule(
     val articlesSource by bean<ArticlesSource> {
         FileSystemArticlesSource(
             scriptEvaluator = scriptingModule.scriptEvaluator.value,
-            articlesProcessor = articlesProcessor.value
+            articlesProcessor = articlesProcessor.value,
+            jsonMapper = utilsModule.objectMapper.value,
         )
     }
 }
