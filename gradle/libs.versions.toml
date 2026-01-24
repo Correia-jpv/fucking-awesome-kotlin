@@ -1,5 +1,6 @@
 [versions]
 bcrypt = "0.10.2"
+bouncycastle = "1.80"
 commonmark = "0.27.1"
 flyway = "11.20.2"
 hikari = "7.0.2"
@@ -12,6 +13,7 @@ komok = "1.0.13"
 kotlin = "2.3.0"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization = "1.10.0"
+ksp = "2.3.4"
 ktor = "3.4.0"
 logback = "1.5.25"
 micrometer = "1.16.2"
@@ -19,9 +21,12 @@ mockk = "1.14.7"
 postgresql = "42.7.9"
 rome = "2.1.0"
 sitemapgen4j = "1.1.2"
+xmlutil = "0.90.3"
 
 [libraries]
 bcrypt = { module = "at.favre.lib:bcrypt", version.ref = "bcrypt" }
+
+bouncycastle-bcpkix = { module = "org.bouncycastle:bcpkix-jdk18on", version.ref = "bouncycastle" }
 
 commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" }
 commonmark-ext-gfm-tables = { module = "org.commonmark:commonmark-ext-gfm-tables", version.ref = "commonmark" }
@@ -53,8 +58,12 @@ kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8",
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
 kotlinx-serialization-hocon = { module = "org.jetbrains.kotlinx:kotlinx-serialization-hocon", version.ref = "kotlinx-serialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 komok-tech-to-be-injected = { module = "io.heapy.komok:komok-tech-to-be-injected", version.ref = "komok" }
+komok-tech-config-dotenv = { module = "io.heapy.komok:komok-tech-config-dotenv", version.ref = "komok" }
+komok-tech-logging = { module = "io.heapy.komok:komok-tech-logging", version.ref = "komok" }
+komok-tech-time = { module = "io.heapy.komok:komok-tech-time", version.ref = "komok" }
 
 ktor-client-apache = { module = "io.ktor:ktor-client-apache", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
@@ -84,6 +93,10 @@ rome = { module = "com.rometools:rome", version.ref = "rome" }
 
 sitemapgen4j = { module = "com.github.dfabulich:sitemapgen4j", version.ref = "sitemapgen4j" }
 
+xmlutil = { module = "io.github.pdvrieze.xmlutil:serialization", version.ref = "xmlutil" }
+
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
