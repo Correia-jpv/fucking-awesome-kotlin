@@ -2,10 +2,8 @@ package link.kotlin.scripts.module
 
 import io.heapy.komok.tech.di.delegate.bean
 import link.kotlin.scripts.CachedGithubTrending
-import link.kotlin.scripts.CachingLinksSource
 import link.kotlin.scripts.CategoryProcessor
 import link.kotlin.scripts.CombinedLinksProcessors
-import link.kotlin.scripts.DefaultLinksChecker
 import link.kotlin.scripts.DefaultLinksProcessor
 import link.kotlin.scripts.DescriptionMarkdownLinkProcessor
 import link.kotlin.scripts.FileSystemLinksSource
@@ -14,6 +12,7 @@ import link.kotlin.scripts.JSoupGithubTrending
 import link.kotlin.scripts.LinksChecker
 import link.kotlin.scripts.LinksProcessor
 import link.kotlin.scripts.LinksSource
+import link.kotlin.scripts.NoopLinksChecker
 import link.kotlin.scripts.ParallelCategoryProcessor
 
 class LinksModule(
@@ -23,7 +22,7 @@ class LinksModule(
     private val renderingModule: RenderingModule,
 ) {
     val linksChecker by bean<LinksChecker> {
-        DefaultLinksChecker(httpClient = utilsModule.httpClient.value)
+        NoopLinksChecker()
     }
 
     val linksProcessor by bean<LinksProcessor> {
@@ -55,15 +54,11 @@ class LinksModule(
     }
 
     val linksSource by bean<LinksSource> {
-        val fileSystemLinksSource = FileSystemLinksSource(
+        FileSystemLinksSource(
             scriptEvaluator = scriptingModule.scriptEvaluator.value,
             githubTrending = githubTrending.value,
-            categoryProcessor = categoryProcessor.value
-        )
-
-        CachingLinksSource(
-            cache = utilsModule.cache.value,
-            delegate = fileSystemLinksSource
+            categoryProcessor = categoryProcessor.value,
+            jsonMapper = utilsModule.objectMapper.value,
         )
     }
 }

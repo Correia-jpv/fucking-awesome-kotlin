@@ -8,8 +8,18 @@ interface LinksChecker {
     suspend fun check(url: String)
 }
 
+internal class NoopLinksChecker : LinksChecker {
+    override suspend fun check(url: String) {
+        log.info("Skipping link check for $url")
+    }
+
+    companion object {
+        val log = logger<NoopLinksChecker>()
+    }
+}
+
 internal class DefaultLinksChecker(
-    private val httpClient: HttpClient
+    private val httpClient: HttpClient,
 ) : LinksChecker {
     override suspend fun check(url: String) {
         try {
