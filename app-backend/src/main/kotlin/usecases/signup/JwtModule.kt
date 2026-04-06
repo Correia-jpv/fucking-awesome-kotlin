@@ -1,19 +1,18 @@
 package usecases.signup
 
-import ConfigModule
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
+import infra.config.ConfigModule
+import infra.config.decode
 import io.heapy.komok.tech.di.delegate.bean
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.hocon.Hocon
-import kotlinx.serialization.hocon.decodeFromConfig
 import java.util.*
 
 class JwtModule(
     private val configModule: ConfigModule,
 ) {
     val jwtConfig by bean<JwtConfig> {
-        Hocon.decodeFromConfig(configModule.config.value.getConfig("jwt"))
+        configModule.decode("jwt")
     }
 
     val generateJwt by bean {

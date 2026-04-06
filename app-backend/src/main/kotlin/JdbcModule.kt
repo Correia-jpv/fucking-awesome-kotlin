@@ -1,9 +1,9 @@
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import infra.config.ConfigModule
+import infra.config.decode
 import io.heapy.komok.tech.di.delegate.bean
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.hocon.Hocon
-import kotlinx.serialization.hocon.decodeFromConfig
 import utils.close
 
 class JdbcModule(
@@ -23,7 +23,7 @@ class JdbcModule(
     }
 
     val jdbcConfig by bean<JdbcConfig> {
-        Hocon.decodeFromConfig(configModule.config.value.getConfig("jdbc"))
+        configModule.decode("jdbc")
     }
 
     @Serializable

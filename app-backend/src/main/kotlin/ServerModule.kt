@@ -1,3 +1,5 @@
+import infra.config.ConfigModule
+import infra.config.decode
 import io.heapy.komok.tech.di.delegate.bean
 import io.ktor.server.auth.authenticate
 import io.ktor.server.auth.jwt.JWTPrincipal
@@ -8,8 +10,6 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.hocon.Hocon
-import kotlinx.serialization.hocon.decodeFromConfig
 import ktor.plugins.configureMonitoring
 import ktor.plugins.configureSockets
 import ktor.plugins.defaults
@@ -93,7 +93,7 @@ class ServerModule(
     }
 
     val serverConfig by bean<ServerConfig> {
-        Hocon.decodeFromConfig(configModule.config.value.getConfig("server"))
+        configModule.decode("server")
     }
 
     @Serializable
