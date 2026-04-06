@@ -14,6 +14,8 @@ https://github.com/Kotlin/kotlin-agent-skills
 https://github.com/connectrpc/connect-kotlin
 https://github.com/theopenconversationkit/tock
 https://github.com/bezsahara/TelegramKitty
+https://www.reddit.com/r/Kotlin/comments/1qv36fr/do_you_think_java_has_caught_up_with_kotlin/
+https://github.com/bezsahara/CustomIndy
 https://github.com/drewhamilton/Poko
 Technology Radar
 Passkeys
