@@ -32,6 +32,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines)
     implementation(libs.komok.tech.to.be.injected)
     implementation(libs.komok.tech.logging)
+    implementation(libs.komok.tech.config.dotenv)
 
     implementation(libs.kotlinx.serialization.hocon)
     implementation(libs.kaml)
