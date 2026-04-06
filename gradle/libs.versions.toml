@@ -64,6 +64,8 @@ komok-tech-to-be-injected = { module = "io.heapy.komok:komok-tech-to-be-injected
 komok-tech-config-dotenv = { module = "io.heapy.komok:komok-tech-config-dotenv", version.ref = "komok" }
 komok-tech-logging = { module = "io.heapy.komok:komok-tech-logging", version.ref = "komok" }
 komok-tech-time = { module = "io.heapy.komok:komok-tech-time", version.ref = "komok" }
+komok-tech-di = { module = "io.heapy.komok:komok-tech-di", version.ref = "komok" }
+komok-tech-di-lib = { module = "io.heapy.komok:komok-tech-di-lib", version.ref = "komok" }
 
 ktor-client-apache = { module = "io.ktor:ktor-client-apache", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
@@ -80,6 +82,7 @@ ktor-server-metrics-micrometer = { module = "io.ktor:ktor-server-metrics-microme
 ktor-server-resources = { module = "io.ktor:ktor-server-resources", version.ref = "ktor" }
 ktor-server-status-pages = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor" }
 ktor-server-websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktor" }
+ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
 
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
