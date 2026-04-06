@@ -1,5 +1,6 @@
 import infra.config.ConfigModule
 import infra.config.decode
+import infra.utils.withEach
 import io.heapy.komok.tech.di.delegate.bean
 import io.ktor.server.auth.authenticate
 import io.ktor.server.auth.jwt.JWTPrincipal
@@ -20,7 +21,6 @@ import usecases.ping.PingModule
 import usecases.signup.JwtModule
 import usecases.signup.LoginModule
 import usecases.signup.RegisterModule
-import utils.withEach
 import kotlin.time.Duration
 
 class ServerModule(
