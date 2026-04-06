@@ -2,8 +2,8 @@
 
 import io.heapy.komok.tech.di.delegate.bean
 import io.heapy.komok.tech.di.delegate.buildModule
+import io.heapy.komok.tech.logging.logger
 import utils.close
-import utils.logger
 import java.lang.management.ManagementFactory
 import java.lang.management.RuntimeMXBean
 import kotlin.time.Duration.Companion.milliseconds
