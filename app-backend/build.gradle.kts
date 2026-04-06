@@ -1,5 +1,6 @@
 plugins {
     application
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
 }
@@ -13,13 +14,18 @@ repositories {
     mavenCentral()
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+kotlin {
     compilerOptions {
         freeCompilerArgs.addAll(
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+            "-Xcontext-parameters",
+            "-Xreturn-value-checker=full",
+        )
+        optIn.addAll(
+            "kotlin.concurrent.atomics.ExperimentalAtomicApi",
         )
     }
+
+    jvmToolchain(25)
 }
 
 tasks.test {
@@ -30,12 +36,11 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlinx.coroutines)
-    implementation(libs.komok.tech.to.be.injected)
-    implementation(libs.komok.tech.logging)
-    implementation(libs.komok.tech.config.dotenv)
 
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.serialization.hocon)
     implementation(libs.kaml)
+    implementation(libs.xmlutil)
 
     implementation(libs.flyway.postgresql)
     implementation(libs.jooq)
@@ -43,6 +48,23 @@ dependencies {
     implementation(libs.hikaricp)
 
     implementation(libs.bcrypt)
+    implementation(libs.bouncycastle.bcpkix)
+
+    implementation(libs.rome)
+
+    implementation(libs.sitemapgen4j)
+
+    implementation(libs.commonmark)
+    implementation(libs.commonmark.ext.gfm.tables)
+
+    implementation(libs.jsoup)
+
+    ksp(libs.komok.tech.di)
+    implementation(libs.komok.tech.di.lib)
+    implementation(libs.komok.tech.to.be.injected)
+    implementation(libs.komok.tech.config.dotenv)
+    implementation(libs.komok.tech.logging)
+    implementation(libs.komok.tech.time)
 
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.cio)
@@ -64,8 +86,14 @@ dependencies {
 
     implementation(libs.logback)
 
+    testImplementation(testFixtures(libs.komok.tech.time))
+    testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
     testImplementation(libs.junit.jupiter)
     testRuntimeOnly(libs.junit.platform.launcher)
+}
+
+tasks.distZip {
+    enabled = false
 }

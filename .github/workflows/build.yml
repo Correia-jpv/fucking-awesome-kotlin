@@ -16,7 +16,7 @@ jobs:
       - run: yarn install --check-cache
         working-directory: app-frontend
   build:
-    name: "Build on JDK 21 and Node.JS 24.x"
+    name: "Build on JDK 25 and Node.JS 24.x"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -27,7 +27,7 @@ jobs:
           key: kotlin-scripts-cache
       - uses: actions/setup-java@v5
         with:
-          java-version: "21"
+          java-version: "25"
           distribution: "liberica"
       - uses: gradle/actions/setup-gradle@v6
       - run: ./gradlew check installDist
