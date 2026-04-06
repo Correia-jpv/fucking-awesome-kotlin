@@ -47,11 +47,6 @@ jobs:
           name: "Frontend Application"
           path: "app-frontend/dist/"
           retention-days: 1
-      - uses: actions/upload-artifact@v7
-        with:
-          name: "Readme"
-          path: "readme/"
-          retention-days: 1
   build-and-push-image:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
@@ -62,10 +57,6 @@ jobs:
         with:
           name: "Frontend Application"
           path: "app-frontend/dist/"
-      - uses: actions/download-artifact@v8
-        with:
-          name: "Readme"
-          path: "readme/"
       - run: ls -laR
       - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v4
@@ -82,9 +73,3 @@ jobs:
           push: true
           context: app-frontend
           tags: ghcr.io/heapy/awesome-kotlin:main
-      - name: "Deploy Readme"
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./readme
-          publish_branch: readme
