@@ -2,6 +2,19 @@ https://kopyk.at/
 https://serranofp.com/inikio/
 https://serranofp.com/blog/context-params.html
 https://mbonnin.net/2026-02-22-kotlin-versions/
+https://github.com/kyay10/KonTinuity
+https://github.com/moneat-io/moneat
+https://github.com/Him188/yamlkt
+https://github.com/krzema12/snakeyaml-engine-kmp
+https://github.com/fork-handles/forkhandles
+kaml -> https://github.com/Heapy/kotaml
+https://github.com/a-sit-plus/awesn1
+https://github.com/ensody/Kompressor
+https://github.com/Kotlin/kotlin-agent-skills
+https://github.com/connectrpc/connect-kotlin
+https://github.com/theopenconversationkit/tock
+https://github.com/bezsahara/TelegramKitty
+https://github.com/drewhamilton/Poko
 Technology Radar
 Passkeys
 Followers
