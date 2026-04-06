@@ -1,19 +1,18 @@
 # docker-compose -f docker-compose.dev.yml up -d
-
-name: "awesome-kotlin"
+name: "awesome_kotlin"
 
 services:
   database:
-    image: postgres:17.2
-    restart: always
-    mem_limit: 128m
-    memswap_limit: 0m
+    image: "postgres:18.3"
+    restart: "always"
+    mem_limit: "128m"
+    memswap_limit: "0m"
     environment:
       POSTGRES_PASSWORD: "awesome_kotlin"
       POSTGRES_USER: "awesome_kotlin"
       POSTGRES_DB: "awesome_kotlin"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - "pgdata:/var/lib/postgresql"
     ports:
       - "127.0.0.1:9567:5432"
 volumes:
