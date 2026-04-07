@@ -14,13 +14,13 @@ class KugDownloadServiceTest {
     private val yamlModule = buildModule<YamlModule>()
 
     private val kugDownloadService = KugDownloadService(
-        yaml = yamlModule.yaml.value,
-        httpClient = httpClientModule.httpClient.value,
+        yaml = yamlModule.yaml,
+        httpClient = httpClientModule.httpClient,
     )
 
     @AfterEach
     fun close() {
-        httpClientModule.close()
+        // TODO: autoclosableModule.close()
     }
 
     @Test

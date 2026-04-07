@@ -4,20 +4,21 @@ import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import infra.config.ConfigModule
 import infra.config.decode
-import io.heapy.komok.tech.di.delegate.bean
+import io.heapy.komok.tech.di.lib.Module
 import kotlinx.serialization.Serializable
 import java.util.*
 
+@Module
 class JwtModule(
     private val configModule: ConfigModule,
 ) {
-    val jwtConfig by bean<JwtConfig> {
+    val jwtConfig: JwtConfig by lazy {
         configModule.decode("jwt")
     }
 
-    val generateJwt by bean {
+    val generateJwt by lazy {
         GenerateJwt(
-            jwtConfig = jwtConfig.value,
+            jwtConfig = jwtConfig,
         )
     }
 

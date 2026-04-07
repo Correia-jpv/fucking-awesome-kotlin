@@ -2,7 +2,12 @@ plugins {
     application
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.allopen)
     alias(libs.plugins.kotlin.serialization)
+}
+
+allOpen {
+    annotation("io.heapy.komok.tech.di.lib.Module")
 }
 
 application {

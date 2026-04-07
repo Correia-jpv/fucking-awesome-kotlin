@@ -2,27 +2,34 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import infra.config.ConfigModule
 import infra.config.decode
-import io.heapy.komok.tech.di.delegate.bean
+import infra.lifecycle.AutoClosableModule
+import io.heapy.komok.tech.di.lib.Module
 import kotlinx.serialization.Serializable
-import utils.close
 
+@Module
 class JdbcModule(
     private val configModule: ConfigModule,
-) : AutoCloseable {
-    val dataSource by bean {
-        HikariDataSource(
+    private val autoClosableModule: AutoClosableModule,
+) {
+    val dataSource by lazy {
+        val dataSource = HikariDataSource(
             HikariConfig().also {
                 it.dataSourceClassName = "org.postgresql.ds.PGSimpleDataSource"
-                it.username = "awesome_kotlin"
-                it.password = "awesome_kotlin"
-                it.addDataSourceProperty("databaseName", "awesome_kotlin")
-                it.addDataSourceProperty("serverName", jdbcConfig.value.host)
-                it.addDataSourceProperty("portNumber", jdbcConfig.value.port)
+                it.username = jdbcConfig.username
+                it.password = jdbcConfig.password
+                it.addDataSourceProperty("databaseName", jdbcConfig.databaseName)
+                it.addDataSourceProperty("serverName", jdbcConfig.host)
+                it.addDataSourceProperty("portNumber", jdbcConfig.port)
             }
+        )
+
+        autoClosableModule.addClosable(
+            t = dataSource,
+            close = HikariDataSource::close,
         )
     }
 
-    val jdbcConfig by bean<JdbcConfig> {
+    val jdbcConfig by lazy<JdbcConfig> {
         configModule.decode("jdbc")
     }
 
@@ -30,9 +37,8 @@ class JdbcModule(
     data class JdbcConfig(
         val host: String,
         val port: String,
+        val username: String,
+        val password: String,
+        val databaseName: String,
     )
-
-    override fun close() {
-        if (dataSource.isInitialized) dataSource.value.close {}
-    }
 }

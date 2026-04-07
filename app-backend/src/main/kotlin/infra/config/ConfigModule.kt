@@ -9,16 +9,16 @@ import kotlinx.serialization.hocon.Hocon
 import kotlinx.serialization.hocon.decodeFromConfig
 
 @Module
-open class ConfigModule {
-    open val overrides by lazy {
+class ConfigModule {
+    val overrides by lazy {
         mapOf<String, String>()
     }
 
-    open val dotenv by lazy {
+    val dotenv by lazy {
         dotenv()
     }
 
-    open val env by lazy {
+    val env by lazy {
         buildMap {
             putAll(System.getenv())
             putAll(dotenv.properties)
@@ -26,7 +26,7 @@ open class ConfigModule {
         }
     }
 
-    open val config: Config by lazy {
+    val config: Config by lazy {
         env.forEach {
             System.setProperty(it.key, it.value)
         }
